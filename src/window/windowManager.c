@@ -1,6 +1,7 @@
 #include "windowManager.h"
 
 static SDL_Window* window = NULL;
+static SDL_Renderer* renderer = NULL;
 
 int initialize_window(void) {
     int width = 640;
@@ -30,6 +31,8 @@ int initialize_window(void) {
         SDL_WINDOW_OPENGL
     );
 
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
@@ -44,6 +47,15 @@ int initialize_window(void) {
     return 1;
 }
 
-SDL_Window* getWindow() {
+void destroy_window() {
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+}
+
+SDL_Renderer* get_renderer() {
+    return renderer;
+}
+
+SDL_Window* get_window() {
     return window;
 }
