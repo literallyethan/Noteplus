@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Module authored by Ethan Purser
 // Purpose:
 // 	handle writing to, reading from,
 // 	saving, and deleting files
