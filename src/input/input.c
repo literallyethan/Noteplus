@@ -9,6 +9,8 @@ void close_input() {
 }
 
 char* get_input(SDL_Event* event, char buffer[]) {
+    
+    // detects non-printable keys
     if (event->type == SDL_KEYDOWN) {
         if (event->key.keysym.sym == SDLK_BACKSPACE && strlen(buffer) > 0) {
             // Handle backspace: remove the last character
@@ -20,6 +22,7 @@ char* get_input(SDL_Event* event, char buffer[]) {
             buffer[0] = '\0';
         }
     }
+    // detects string input
     else if (event->type == SDL_TEXTINPUT) {
         // Append new text to inputText if it's not full
         if (strlen(buffer) + strlen(event->text.text) < MAX_INPUT_LENGTH) {
