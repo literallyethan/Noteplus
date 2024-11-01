@@ -1,5 +1,7 @@
 #include "input.h"
 
+static SDL_Surface* text_surface;
+
 void initialize_input() {
     SDL_StartTextInput();
 }
@@ -7,6 +9,7 @@ void initialize_input() {
 void close_input() {
     SDL_StopTextInput();
 }
+
 
 char* get_input(SDL_Event* event, char buffer[]) {
     

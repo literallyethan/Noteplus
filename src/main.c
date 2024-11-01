@@ -12,13 +12,12 @@ int main(int argc, char* argv[]) {
 
     char inputText[MAX_INPUT_LENGTH] = "";  // C string to hold the input
     char displayText[MAX_INPUT_LENGTH] = "";
-    int quit = 0;
 
-    while (!quit) {
+    while (running) {
         SDL_Event event;
         while (SDL_PollEvent(&event) != 0) {
             if (event.type == SDL_QUIT) {
-                quit = 1;
+                running = 0;
             }
             get_input(&event, inputText);
             //strncpy(displayText, get_input(&event, inputText), MAX_INPUT_LENGTH);
@@ -33,7 +32,6 @@ int main(int argc, char* argv[]) {
 
     close_input();
     destroy_window();
-    SDL_Quit();
 
     return 0;
 }

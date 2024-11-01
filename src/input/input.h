@@ -1,6 +1,7 @@
 #ifndef INPUT_H
 #define INPUT_H
 #include "../common.h"
+#include "../window/windowManager.h"
 
 void initialize_input();
 
