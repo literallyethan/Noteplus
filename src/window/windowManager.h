@@ -13,6 +13,10 @@ SDL_Window* get_window();
 
 SDL_Renderer* get_renderer();
 
+TTF_Font* get_font();
+
+SDL_Color* get_color();
+
 void destroy_window();
 
 #endif // WINDOW_MANAGER_H 
