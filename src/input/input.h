@@ -9,5 +9,6 @@ void close_input();
 
 char* get_input(SDL_Event* event, char buffer[]);
 
+int render_input(const char* text, int x, int y, SDL_Color* color);
 
 #endif
