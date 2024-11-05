@@ -47,15 +47,21 @@ int initialize_window(void) {
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    font = TTF_OpenFont("../../TitilliumWeb-Regular.ttf", 14);
+    font = TTF_OpenFont("TitilliumWeb-Regular.ttf", 14);
+    if(font == NULL) {
+        puts("font not opened.");
+        return 0;
+    }
+
     TTF_SetFontSize(font, 14);
     TTF_SetFontStyle(font, 0); // regular style
 
+/*
     if(TTF_FontFaceIsFixedWidth(font) == 0) {
         puts("Font width is not fixed.");
         return 0;
     }
-
+*/
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
