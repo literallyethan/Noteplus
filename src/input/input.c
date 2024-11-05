@@ -60,6 +60,7 @@ char* get_input(SDL_Event* event, char buffer[]) {
         if (event->key.keysym.sym == SDLK_BACKSPACE && strlen(buffer) > 0) {
             // Handle backspace: remove the last character
             buffer[strlen(buffer) - 1] = '\0';
+            render_input(buffer, 0, 0, get_color());
         } else if (event->key.keysym.sym == SDLK_RETURN) {
             // Handle enter: print the text and clear the string
             //return buffer;
