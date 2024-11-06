@@ -38,7 +38,6 @@ int render_input(const char* text, int x, int y, SDL_Color* color) {
         return 0;
     }
 
-
     // Create texture from surface pixels
     SDL_Texture* text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
     if (!text_texture) {
@@ -63,18 +62,26 @@ int render_input(const char* text, int x, int y, SDL_Color* color) {
 
 char* get_input(SDL_Event* event, char buffer[]) {
     
+    if(strlen(buffer) == MAX_INPUT_LENGTH) {
+        // clear the buffer, temporary solution
+        printf("Input: %s\n", buffer);
+        buffer[0] = '\0';
+    }
+
     // detects non-printable keys
     if (event->type == SDL_KEYDOWN) {
         if (event->key.keysym.sym == SDLK_BACKSPACE && strlen(buffer) > 0) {
             // Handle backspace: remove the last character
             buffer[strlen(buffer) - 1] = '\0';
-            ///render_input(buffer, 0, 0, get_color());
         } else if (event->key.keysym.sym == SDLK_RETURN) {
-            // Handle enter: print the text and clear the string
-            //return buffer;
-            printf("Input: %s\n", buffer);
-            buffer[0] = '\0';
-            ///render_input(buffer, 0, 0, get_color());
+            
+            // if input is enter, i want a newline
+            // (does not render newline properly)
+            if(strlen(buffer) + 1 < MAX_INPUT_LENGTH) {
+                strcat(buffer, "\n");
+            }
+            //printf("Input: %s\n", buffer);
+            //buffer[0] = '\0';
         }
     }
     // detects string input
@@ -82,7 +89,6 @@ char* get_input(SDL_Event* event, char buffer[]) {
         // Append new text to inputText if it's not full
         if (strlen(buffer) + strlen(event->text.text) < MAX_INPUT_LENGTH) {
             strcat(buffer, event->text.text);
-            //render_input(buffer, 0, 0, get_color());
         }
     }
 
