@@ -1,7 +1,5 @@
 #include "input.h"
 
-
-
 void initialize_input() {
     SDL_StartTextInput();
 }
@@ -11,7 +9,6 @@ void close_input() {
 }
 
 int render_input(const char* text, int x, int y, SDL_Color* color) {
-    // unable to render 0 length strings... compensate
     
     if(strlen(text) == 0) {
         // clears screen if there should be no text
@@ -63,7 +60,8 @@ int render_input(const char* text, int x, int y, SDL_Color* color) {
 char* get_input(SDL_Event* event, char buffer[]) {
     
     if(strlen(buffer) == MAX_INPUT_LENGTH) {
-        // clear the buffer, temporary solution
+        // TODO:
+        /* force return string for saving to note, clear buffer */
         printf("Input: %s\n", buffer);
         buffer[0] = '\0';
     }
@@ -92,6 +90,6 @@ char* get_input(SDL_Event* event, char buffer[]) {
         }
     }
 
-    render_input(buffer, 0, 0, get_color());
+
     return buffer;
 }   
